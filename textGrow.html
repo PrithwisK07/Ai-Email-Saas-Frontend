@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="Growing">Normal Text</p>
+
+    <script>
+      const textgrow = document.querySelector("#Growing");
+      let fs = 16;
+      let var1 = setInterval(grow, 1000);
+      let var2;
+      function grow() {
+        textgrow.innerText = "Text is Growing!";
+        textgrow.style.fontSize = `${fs}px`;
+        fs += 5;
+        if (fs >= 50) {
+          console.log("grown");
+          clearInterval(var1);
+          var2 = setInterval(shrink, 1000);
+        }
+      }
+
+      function shrink() {
+        textgrow.innerText = "Text is Shrinking!";
+        textgrow.style.fontSize = `${fs}px`;
+        fs -= 5;
+        if (fs <= 5) {
+          clearInterval(var2);
+        }
+      }
+    </script>
+  </body>
+</html>

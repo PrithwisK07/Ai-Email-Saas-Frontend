@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+
+      body {
+        width: 100vw;
+        height: 100vh;
+        display: grid;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container {
+        width: 40vw;
+        height: 45vh;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      #output {
+        border: 1px solid black;
+        border-radius: 0.5rem;
+        grid-column: span 4;
+      }
+
+      .action {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0.5rem;
+        border: 1px solid black;
+      }
+
+      button {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="output">0.00</div>
+      <button class="action">+</button>
+      <button class="action">/</button>
+      <button class="action">*</button>
+      <button class="action">-</button>
+      <button class="action">7</button>
+      <button class="action">8</button>
+      <button class="action">9</button>
+      <button style="grid-row: span 2" class="action">=</button>
+      <button class="action">4</button>
+      <button class="action">5</button>
+      <button class="action">6</button>
+      <button class="action">1</button>
+      <button class="action">2</button>
+      <button class="action">3</button>
+      <button class="action">.</button>
+      <button style="grid-column: span 2" class="action">0</button>
+      <button style="grid-column: span 2" class="action">C</button>
+    </div>
+    <script>
+      let resultString = "";
+      const buttons = document.querySelectorAll(".action");
+      const output = document.querySelector("#output");
+      const btns = Array.from(buttons);
+      btns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          if (btn.innerText == "C") {
+            resultString = "";
+          } else if (btn.innerText == "=") {
+            const result = eval(resultString);
+            resultString = result + "";
+            console.log(result);
+          } else if (
+            (resultString.length == 0 ||
+              resultString.charAt(resultString.length - 1) == "+" ||
+              resultString.charAt(resultString.length - 1) == "-" ||
+              resultString.charAt(resultString.length - 1) == "*" ||
+              resultString.charAt(resultString.length - 1) == "/") &&
+            (btn.innerText == "+" ||
+              btn.innerText == "-" ||
+              btn.innerText == "*" ||
+              btn.innerText == "/")
+          ) {
+            // pass;
+          } else {
+            resultString += btn.innerText;
+          }
+
+          output.textContent = resultString;
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const input = prompt("Enter a string or input:");
+      try {
+        let number = parseInt(input);
+        let rev = 0;
+        while (number > 0) {
+          d = number % 10;
+          rev = rev * 10 + d;
+          number = Math.floor(number / 10);
+        }
+
+        console.log(rev);
+      } catch (error) {
+        for (let i = 0; i < input.length; i++) {
+          const ch = input.charAt(i);
+          if (ch == "i" || ch == "a" || ch == "e" || ch == "o" || ch == "u") {
+            console.log(ch);
+            break;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
